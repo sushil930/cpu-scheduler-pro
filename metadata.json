@@ -1,0 +1,5 @@
+{
+  "name": "CPU Scheduler Pro",
+  "description": "An interactive, high-fidelity visualization tool for CPU scheduling algorithms including FCFS, SJF, RR, EDF, and more. Designed for educational and engineering analysis.",
+  "requestFramePermissions": []
+}
