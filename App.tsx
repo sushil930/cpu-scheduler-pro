@@ -12,10 +12,20 @@ import GanttChart from './components/GanttChart';
 import StatsTable from './components/StatsTable';
 import ProcessInput from './components/ProcessInput';
 import ReadyQueue from './components/ReadyQueue';
-import { Cpu, Clock, BarChart3, GraduationCap, Sparkles, Github, Linkedin, Instagram } from 'lucide-react';
+import { Cpu, Clock, BarChart3, GraduationCap, Sparkles, Github, Linkedin, Instagram, Sun, Moon } from 'lucide-react';
 
 const App: React.FC = () => {
   // --- State ---
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
   const [processes, setProcesses] = useState<Process[]>(
     INITIAL_PROCESSES.map((p, i) => ({
       ...p,
@@ -447,24 +457,24 @@ const App: React.FC = () => {
 
   // --- Render ---
   return (
-    <div className="h-screen w-screen bg-[#0f172a] text-slate-200 font-sans selection:bg-blue-500/30 flex flex-col overflow-hidden">
+    <div className="h-screen w-screen bg-slate-50 dark:bg-[#0f172a] text-slate-900 dark:text-slate-200 font-sans selection:bg-blue-500/30 flex flex-col overflow-hidden transition-colors duration-300">
       {/* Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
-        <div className="absolute top-0 left-0 right-0 h-96 bg-blue-900/10 blur-[120px]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#cbd5e1_1px,transparent_1px),linear-gradient(to_bottom,#cbd5e1_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
+        <div className="absolute top-0 left-0 right-0 h-96 bg-blue-500/5 dark:bg-blue-900/10 blur-[120px]"></div>
       </div>
 
       {/* Header */}
-      <header className="flex-shrink-0 relative z-20 flex items-center justify-between bg-slate-900/60 backdrop-blur-xl border-b border-white/5 px-6 py-3 shadow-md">
+      <header className="flex-shrink-0 relative z-20 flex items-center justify-between bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border-b border-slate-200 dark:border-white/5 px-6 py-3 shadow-md transition-colors duration-300">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg shadow-lg shadow-lg shadow-blue-500/20">
+            <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg shadow-lg shadow-blue-500/20">
               <Cpu size={20} className="text-white" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-white tracking-tight leading-none">
-                CPU Scheduler <span className="text-blue-400 font-light">Sim</span>
+              <h1 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-none">
+                CPU Scheduler <span className="text-blue-500 dark:text-blue-400 font-light">Sim</span>
               </h1>
-              <p className="text-slate-400 text-[10px] font-medium tracking-wide uppercase">
+              <p className="text-slate-500 dark:text-slate-400 text-[10px] font-medium tracking-wide uppercase">
                 Operating System Logic Visualizer
               </p>
             </div>
@@ -472,39 +482,39 @@ const App: React.FC = () => {
           
           <div className="flex items-center gap-4">
              {/* Creator Info */}
-             <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-900/80 rounded-lg border border-slate-800">
-                <GraduationCap size={14} className="text-blue-400" />
-                <span className="text-[11px] text-slate-400">
-                  Made by <span className="text-slate-200 font-semibold">Sushil Patel</span>
+             <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-white/80 dark:bg-slate-900/80 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors duration-300">
+                <GraduationCap size={14} className="text-blue-500 dark:text-blue-400" />
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                  Made by <span className="text-slate-700 dark:text-slate-200 font-semibold">Sushil Patel</span>
                 </span>
                 <div className="flex items-center gap-2 ml-1">
-                  <a href="https://github.com/sushil930" target="_blank" rel="noopener noreferrer" className="p-1 rounded hover:bg-slate-800 text-slate-500 hover:text-white transition-all" title="GitHub">
+                  <a href="https://github.com/sushil930" target="_blank" rel="noopener noreferrer" className="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white transition-all" title="GitHub">
                     <Github size={12} />
                   </a>
-                  <a href="https://www.linkedin.com/in/sushil-patel-dev/" target="_blank" rel="noopener noreferrer" className="p-1 rounded hover:bg-slate-800 text-slate-500 hover:text-blue-400 transition-all" title="LinkedIn">
+                  <a href="https://www.linkedin.com/in/sushil-patel-dev/" target="_blank" rel="noopener noreferrer" className="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all" title="LinkedIn">
                     <Linkedin size={12} />
                   </a>
-                  <a href="https://www.instagram.com/suseal__/" target="_blank" rel="noopener noreferrer" className="p-1 rounded hover:bg-slate-800 text-slate-500 hover:text-pink-400 transition-all" title="Instagram">
+                  <a href="https://www.instagram.com/suseal__/" target="_blank" rel="noopener noreferrer" className="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 dark:text-slate-500 hover:text-pink-600 dark:hover:text-pink-400 transition-all" title="Instagram">
                     <Instagram size={12} />
                   </a>
                 </div>
              </div>
 
-             <div className="h-8 w-px bg-slate-800 hidden lg:block"></div>
-             <div className="flex items-center gap-3 px-3 py-1.5 bg-slate-900/80 rounded-lg border border-slate-800 shadow-inner">
+             <div className="h-8 w-px bg-slate-200 dark:bg-slate-800 hidden lg:block transition-colors duration-300"></div>
+             <div className="flex items-center gap-3 px-3 py-1.5 bg-white/80 dark:bg-slate-900/80 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-inner transition-colors duration-300">
                 <div className="flex flex-col">
-                    <span className="text-[9px] uppercase text-slate-500 font-bold tracking-wider">System Tick</span>
-                    <span className="text-lg font-mono font-bold text-white tabular-nums flex items-center gap-2 leading-none">
+                    <span className="text-[9px] uppercase text-slate-400 dark:text-slate-500 font-bold tracking-wider">System Tick</span>
+                    <span className="text-lg font-mono font-bold text-slate-700 dark:text-white tabular-nums flex items-center gap-2 leading-none">
                         <Clock size={14} className="text-blue-500"/> 
                         {tick.toString().padStart(3, '0')}
                     </span>
                 </div>
              </div>
 
-             <div className="h-8 w-px bg-slate-800 hidden md:block"></div>
+             <div className="h-8 w-px bg-slate-200 dark:bg-slate-800 hidden md:block transition-colors duration-300"></div>
 
              <div className="px-2 hidden md:block">
-                <div className="flex justify-between text-[9px] text-slate-500 font-bold uppercase mb-1">
+                <div className="flex justify-between text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase mb-1">
                     <span>Sim Speed</span>
                     <span>{Math.round((1600 - speed)/10)}%</span>
                 </div>
@@ -515,9 +525,19 @@ const App: React.FC = () => {
                     step="100"
                     value={1600 - speed} 
                     onChange={(e) => setSpeed(1600 - parseInt(e.target.value))}
-                    className="w-24 h-1.5 bg-slate-800 rounded-full appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition-all"
+                    className="w-24 h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition-all"
                 />
              </div>
+
+             <div className="h-8 w-px bg-slate-200 dark:bg-slate-800 hidden md:block transition-colors duration-300"></div>
+
+             <button 
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className="p-2 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 transition-all shadow-sm"
+                title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+             >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+             </button>
           </div>
       </header>
 
@@ -560,7 +580,7 @@ const App: React.FC = () => {
             </div>
             
             {/* Info Footer */}
-            <div className="flex-shrink-0 flex items-center gap-3 text-[10px] text-slate-500 px-2 py-1 border-t border-white/5">
+            <div className="flex-shrink-0 flex items-center gap-3 text-[10px] text-slate-500 dark:text-slate-500 px-2 py-1 border-t border-slate-200 dark:border-white/5 transition-colors duration-300">
                 <BarChart3 size={12} />
                 <span>Real-time calculation of Turnaround Time (TAT), Waiting Time (WT), and CPU metrics.</span>
             </div>

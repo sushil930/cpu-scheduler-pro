@@ -17,18 +17,18 @@ const GanttChart: React.FC<GanttChartProps> = ({ data, totalTime }) => {
   }, [data]);
 
   return (
-    <div className="w-full bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-white/5 shadow-xl relative flex-shrink-0">
+    <div className="w-full bg-white/60 dark:bg-slate-900/60 backdrop-blur-md rounded-2xl p-4 border border-slate-200 dark:border-white/5 shadow-xl relative flex-shrink-0 transition-colors duration-300">
       <div className="flex justify-between items-center mb-3">
-        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">CPU Operations Log</h3>
-        <div className="flex items-center gap-2 text-[10px] text-slate-500 font-mono">
-            <span className="w-2.5 h-2.5 bg-[#1e293b] border border-slate-600 rounded-sm relative overflow-hidden flex items-center justify-center">
-                 <div className="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(45deg,#fff,#fff_2px,transparent_2px,transparent_4px)]"></div>
+        <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">CPU Operations Log</h3>
+        <div className="flex items-center gap-2 text-[10px] text-slate-500 dark:text-slate-500 font-mono">
+            <span className="w-2.5 h-2.5 bg-slate-100 dark:bg-[#1e293b] border border-slate-300 dark:border-slate-600 rounded-sm relative overflow-hidden flex items-center justify-center">
+                 <div className="absolute inset-0 opacity-20 bg-[repeating-linear-gradient(45deg,#000,#000_2px,transparent_2px,transparent_4px)] dark:bg-[repeating-linear-gradient(45deg,#fff,#fff_2px,transparent_2px,transparent_4px)]"></div>
             </span> IDLE
             <span className="w-2.5 h-2.5 bg-blue-500 rounded-sm ml-2"></span> BUSY
         </div>
       </div>
       
-      <div className="relative w-full bg-slate-950/50 rounded-lg border border-slate-800 overflow-hidden">
+      <div className="relative w-full bg-slate-50 dark:bg-slate-950/50 rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors duration-300">
         {/* Ruler Background */}
         <div className="absolute inset-0 pointer-events-none z-0 flex" style={{ backgroundSize: '40px 100%' }}>
              {/* This would need dynamic generation for perfect alignment, approximating with grid for now */}
@@ -48,13 +48,13 @@ const GanttChart: React.FC<GanttChartProps> = ({ data, totalTime }) => {
               return (
                 <div
                   key={idx}
-                  className="flex-shrink-0 h-full relative group border-r border-slate-900/10"
+                  className="flex-shrink-0 h-full relative group border-r border-slate-200 dark:border-slate-900/10"
                   style={{ width: `${width}px` }}
                 >
                   {/* The Block Itself */}
                   <div 
                     className={`w-full h-8 mt-2 flex items-center justify-center text-xs font-bold transition-all duration-300 border-y 
-                        ${isIdle ? 'border-slate-700/50 bg-slate-800/30' : 'border-white/5 shadow-lg'}`}
+                        ${isIdle ? 'border-slate-300 dark:border-slate-700/50 bg-slate-200/30 dark:bg-slate-800/30' : 'border-black/5 dark:border-white/5 shadow-lg'}`}
                     style={{ 
                         backgroundColor: isIdle ? undefined : block.color,
                         backgroundImage: isIdle ? `repeating-linear-gradient(
@@ -66,16 +66,16 @@ const GanttChart: React.FC<GanttChartProps> = ({ data, totalTime }) => {
                           )` : undefined
                     }}
                   >
-                    <span className={`z-10 drop-shadow-sm tracking-wider ${isIdle ? 'text-slate-500 font-mono text-[10px]' : 'text-white'}`}>
+                    <span className={`z-10 drop-shadow-sm tracking-wider ${isIdle ? 'text-slate-500 font-mono text-[10px]' : 'text-slate-900 dark:text-white'}`}>
                         {isIdle ? 'IDLE' : block.processId}
                     </span>
                   </div>
 
                   {/* Ruler Markers */}
-                  <div className="absolute bottom-0 w-full h-4 border-t border-slate-800 flex justify-between items-end px-0.5">
-                        <div className="h-1 w-px bg-slate-700"></div>
-                        {duration > 1 && <div className="h-0.5 w-px bg-slate-800"></div>} 
-                        <div className="h-1 w-px bg-slate-700"></div>
+                  <div className="absolute bottom-0 w-full h-4 border-t border-slate-200 dark:border-slate-800 flex justify-between items-end px-0.5">
+                        <div className="h-1 w-px bg-slate-300 dark:bg-slate-700"></div>
+                        {duration > 1 && <div className="h-0.5 w-px bg-slate-200 dark:bg-slate-800"></div>} 
+                        <div className="h-1 w-px bg-slate-300 dark:bg-slate-700"></div>
                   </div>
 
                   {/* Tooltip / Labels */}
@@ -93,7 +93,7 @@ const GanttChart: React.FC<GanttChartProps> = ({ data, totalTime }) => {
              
              {/* Empty state filler */}
              {data.length === 0 && (
-                 <div className="w-full h-full flex items-center justify-center text-slate-600 text-xs italic">
+                 <div className="w-full h-full flex items-center justify-center text-slate-400 dark:text-slate-600 text-xs italic">
                      Waiting for simulation start...
                  </div>
              )}
