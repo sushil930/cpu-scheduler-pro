@@ -1,20 +1,132 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+
+# ⚡ CPU Scheduler Pro
+### Advanced Operating System Logic Visualizer
+
+<img width="1200" height="475" alt="CPU Scheduler Pro Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+
+<br/>
+
+[![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-4.0-646Cff?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+
+<br/>
+
+<p align="center">
+  <b>A powerful, interactive, and educational tool to visualize CPU scheduling algorithms in real-time.</b><br/>
+  Designed for students, developers, and OS enthusiasts to understand the core concepts of process management.
+</p>
+
 </div>
 
-# Run and deploy your AI Studio app
+---
 
-This contains everything you need to run your app locally.
+## 🚀 Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1YgLzuusTeq6tjF_yj2JdTZ_YWt3MpJNX
+### 🎨 Interactive Visualization
+- **Real-time Gantt Chart**: Watch processes get scheduled on the CPU tick-by-tick.
+- **Dynamic Ready Queue**: Visualize the state of the waiting queue with progress bars and status indicators.
+- **Process States**: Clear visual distinction between `READY`, `RUNNING`, `WAITING`, and `COMPLETED` states.
 
-## Run Locally
+### 🛠️ Comprehensive Control
+- **Playback Controls**: Play, Pause, Step Forward, and Reset the simulation at any time.
+- **Speed Control**: Adjust the simulation speed from slow-motion to instant execution.
+- **Custom Input**: Add processes with specific Arrival Time, Burst Time, Priority, Deadlines, and Periods.
+- **Randomizer**: Generate random datasets to test edge cases quickly.
 
-**Prerequisites:**  Node.js
+### 📊 Detailed Analytics
+- **Live Metrics**: Real-time calculation of Turnaround Time (TAT), Waiting Time (WT), and Response Time (RT).
+- **Stats Table**: Detailed breakdown of every process's lifecycle.
+- **Report Generation**: Export a comprehensive HTML report with Gantt charts, logs, and formulas for assignments or analysis.
 
+### 🌓 Modern UI/UX
+- **Dark & Light Mode**: Seamlessly switch between themes to suit your environment.
+- **Responsive Design**: Works beautifully on desktops and tablets.
+- **Glassmorphism**: Modern aesthetic with backdrop blurs and smooth transitions.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+
+## 🧠 Supported Algorithms
+
+This simulator supports a wide range of scheduling algorithms, from basic to advanced real-time scheduling.
+
+| Algorithm | Type | Description |
+|-----------|------|-------------|
+| **FCFS** | Non-Preemptive | **First-Come, First-Served**: The simplest queue-based scheduling. |
+| **SJF** | Non-Preemptive | **Shortest Job First**: Selects the waiting process with the smallest burst time. |
+| **SRTF** | Preemptive | **Shortest Remaining Time First**: Preemptive version of SJF. |
+| **Round Robin** | Preemptive | **Round Robin**: Each process gets a fixed time quantum. |
+| **Priority (NP)** | Non-Preemptive | **Priority Scheduling**: Highest priority process runs to completion. |
+| **Priority (P)** | Preemptive | **Priority Scheduling**: Higher priority processes preempt lower ones. |
+| **HRRN** | Non-Preemptive | **Highest Response Ratio Next**: Dynamic priority based on waiting time to prevent starvation. |
+| **EDF** | Preemptive | **Earliest Deadline First**: Real-time scheduling based on closest deadline. |
+| **RMS** | Preemptive | **Rate Monotonic Scheduling**: Static priority based on period duration (shorter period = higher priority). |
+
+---
+
+## 💻 Getting Started
+
+Follow these steps to run the project locally on your machine.
+
+### Prerequisites
+- **Node.js** (v16 or higher)
+- **npm** or **yarn**
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/sushil930/cpu-scheduler-pro.git
+   cd cpu-scheduler-pro
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in Browser**
+   Visit `http://localhost:5173` to start simulating!
+
+---
+
+## 📸 Screenshots
+
+### Dark Mode
+> *Experience the sleek, developer-focused dark theme.*
+*(Add screenshot here)*
+
+### Light Mode
+> *Clean and crisp light theme for daylight productivity.*
+*(Add screenshot here)*
+
+### Report Generation
+> *Detailed HTML reports generated instantly.*
+*(Add screenshot here)*
+
+---
+
+## 👨‍💻 Creator
+
+**Sushil Patel**
+- **Course**: MCA
+- **GitHub**: [@sushil930](https://github.com/sushil930)
+- **LinkedIn**: [Sushil Patel](https://www.linkedin.com/in/sushil-patel-dev/)
+- **Instagram**: [@suseal__](https://www.instagram.com/suseal__/)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+<div align="center">
+  <sub>Built with ❤️ using React, Vite & Gemini 3 Pro</sub>
+</div>
