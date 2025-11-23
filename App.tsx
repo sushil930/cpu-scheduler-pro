@@ -472,7 +472,7 @@ const App: React.FC = () => {
             </div>
             <div>
               <h1 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight leading-none">
-                CPU Scheduler <span className="text-blue-500 dark:text-blue-400 font-light">Sim</span>
+                CPU Scheduler <span className="text-blue-500 dark:text-blue-400 font-light">Pro</span>
               </h1>
               <p className="text-slate-500 dark:text-slate-400 text-[10px] font-medium tracking-wide uppercase">
                 Operating System Logic Visualizer
