@@ -3,8 +3,15 @@
 # ⚡ CPU Scheduler Pro
 ### Advanced Operating System Logic Visualizer
 
-<img width="1200" height="475" alt="CPU Scheduler Pro Banner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+<img width="1200" alt="CPU Scheduler Pro Banner" src="public/images/darkMode.jpeg" />
 
+<br/>
+
+<a href="https://cpu-scheduler-pro.vercel.app" target="_blank">
+  <img src="https://img.shields.io/badge/Live_Demo-View_Site-2ea44f?style=for-the-badge&logo=vercel" alt="Live Demo" />
+</a>
+
+<br/>
 <br/>
 
 [![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
@@ -101,15 +108,15 @@ Follow these steps to run the project locally on your machine.
 
 ### Dark Mode
 > *Experience the sleek, developer-focused dark theme.*
-*(Add screenshot here)*
+![Dark Mode Screenshot](public/images/darkMode.jpeg)
 
 ### Light Mode
 > *Clean and crisp light theme for daylight productivity.*
-*(Add screenshot here)*
+![Light Mode Screenshot](public/images/lightMode.png)
 
 ### Report Generation
 > *Detailed HTML reports generated instantly.*
-*(Add screenshot here)*
+![Report Generation Screenshot](public/images/Report.jpeg)
 
 ---
 
