@@ -101,15 +101,15 @@ Follow these steps to run the project locally on your machine.
 
 ### Dark Mode
 > *Experience the sleek, developer-focused dark theme.*
-*(Add screenshot here)*
+*([Add screenshot here](https://github.com/sushil930/cpu-scheduler-pro/blob/main/public/images/Screenshot_23-11-2025_92724_localhost.jpeg?raw=true))*
 
 ### Light Mode
 > *Clean and crisp light theme for daylight productivity.*
-*(Add screenshot here)*
+*([Add screenshot here](https://github.com/sushil930/cpu-scheduler-pro/blob/main/public/images/Screenshot%202025-11-23%20094710.png?raw=true)*
 
 ### Report Generation
 > *Detailed HTML reports generated instantly.*
-*(Add screenshot here)*
+*([Add screenshot here](https://github.com/sushil930/cpu-scheduler-pro/blob/main/public/images/Screenshot_23-11-2025_94810_.jpeg?raw=true))*
 
 ---
 
