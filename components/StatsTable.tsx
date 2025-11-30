@@ -1,13 +1,14 @@
 import React from 'react';
 import { Process, ProcessState } from '../types';
-import { Activity, Clock, CheckCircle2, Download } from 'lucide-react';
+import { Activity, Clock, CheckCircle2, Download, Trash2 } from 'lucide-react';
 
 interface StatsTableProps {
   processes: Process[];
+  onDeleteProcess: (id: string) => void;
   onDownload?: () => void;
 }
 
-const StatsTable: React.FC<StatsTableProps> = ({ processes, onDownload }) => {
+const StatsTable: React.FC<StatsTableProps> = ({ processes, onDeleteProcess, onDownload }) => {
   const completed = processes.filter(p => p.state === ProcessState.COMPLETED);
   const isFinished = processes.length > 0 && completed.length === processes.length;
   
@@ -67,42 +68,62 @@ const StatsTable: React.FC<StatsTableProps> = ({ processes, onDownload }) => {
               <th className="px-6 py-3 border-b border-slate-200 dark:border-slate-800 text-right hidden sm:table-cell">Finish</th>
               <th className="px-6 py-3 border-b border-slate-200 dark:border-slate-800 text-right text-emerald-600 dark:text-emerald-500">TAT</th>
               <th className="px-6 py-3 border-b border-slate-200 dark:border-slate-800 text-right text-amber-600 dark:text-amber-500">Wait</th>
-              <th className="px-6 py-3 border-b border-slate-200 dark:border-slate-800 text-center">Status</th>
+                            <th className="px-6 py-3 border-b border-slate-200 dark:border-slate-800 text-center">Status</th>
+              <th className="px-6 py-3 border-b border-slate-200 dark:border-slate-800 text-center">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-200 dark:divide-slate-800/50 bg-white/20 dark:bg-slate-900/20 transition-colors duration-300">
-            {processes.map((p) => (
-              <tr key={p.id} className="group hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors">
-                <td className="px-6 py-2.5 font-bold text-slate-900 dark:text-white">
-                    <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: p.color }}></span>
-                        {p.id}
-                    </div>
+          <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+            {processes.map((process) => (
+              <tr key={process.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: process.color }}></span>
+                    {process.id}
+                  </div>
                 </td>
-                <td className="px-6 py-2.5 text-right text-slate-700 dark:text-slate-300 font-mono">{p.arrivalTime}</td>
-                <td className="px-6 py-2.5 text-right text-slate-700 dark:text-slate-300 font-mono">{p.burstTime}</td>
-                <td className="px-6 py-2.5 text-right text-slate-700 dark:text-slate-300 font-mono">{p.priority}</td>
-                <td className="px-6 py-2.5 text-right text-slate-500 dark:text-slate-400 font-mono hidden sm:table-cell">{p.completionTime ?? '-'}</td>
-                <td className="px-6 py-2.5 text-right font-mono font-medium text-emerald-600 dark:text-emerald-400">
-                    {p.state === 'COMPLETED' ? p.turnaroundTime : '-'}
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 text-right">
+                  {process.arrivalTime}
                 </td>
-                <td className="px-6 py-2.5 text-right font-mono font-medium text-amber-600 dark:text-amber-400">{p.waitingTime}</td>
-                <td className="px-6 py-2.5 text-center">
-                   <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold border shadow-sm ${
-                       p.state === 'COMPLETED' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400' :
-                       p.state === 'RUNNING' ? 'bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400 animate-pulse' :
-                       p.state === 'READY' ? 'bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400' :
-                       'bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-500 border-slate-300 dark:border-slate-700'
-                   }`}>
-                       {p.state === 'COMPLETED' && <CheckCircle2 size={10} />}
-                       {p.state}
-                   </span>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 text-right">
+                  {process.burstTime}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 text-right">
+                  {process.priority}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 hidden sm:table-cell text-right">
+                  {process.completionTime ?? '-'}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-emerald-600 dark:text-emerald-400 text-right">
+                  {process.state === 'COMPLETED' ? process.turnaroundTime : '-'}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-amber-600 dark:text-amber-400 text-right">
+                  {process.waitingTime}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+                  <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold border shadow-sm ${
+                      process.state === 'COMPLETED' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400' :
+                      process.state === 'RUNNING' ? 'bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400 animate-pulse' :
+                      process.state === 'READY' ? 'bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400' :
+                      'bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-500 border-slate-300 dark:border-slate-700'
+                  }`}>
+                      {process.state === 'COMPLETED' && <CheckCircle2 size={10} />}
+                      {process.state}
+                  </span>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+                  <button
+                    onClick={() => onDeleteProcess(process.id)}
+                    className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors p-1.5 rounded-md hover:bg-red-50 dark:hover:bg-red-900/20"
+                    title="Delete Process"
+                  >
+                    <Trash2 size={16} />
+                  </button>
                 </td>
               </tr>
             ))}
             {processes.length === 0 && (
                 <tr>
-                    <td colSpan={8} className="px-6 py-8 text-center text-slate-600 italic">
+                    <td colSpan={9} className="px-6 py-8 text-center text-slate-600 dark:text-slate-400 italic">
                         No processes in memory
                     </td>
                 </tr>

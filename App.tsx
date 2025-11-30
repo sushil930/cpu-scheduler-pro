@@ -60,15 +60,7 @@ const App: React.FC = () => {
     setReadyQueue([]);
     setCpuId(null);
     setQuantumClock(0);
-    setProcesses(prev => prev.map(p => ({
-      ...p,
-      remainingTime: p.burstTime,
-      state: ProcessState.WAITING,
-      startTime: null,
-      completionTime: null,
-      waitingTime: 0,
-      turnaroundTime: 0
-    })));
+    setProcesses([]);
   };
 
   const handleStep = useCallback(() => {
@@ -100,9 +92,9 @@ const App: React.FC = () => {
 
     setGanttData(prev => {
       const lastBlock = prev[prev.length - 1];
-      const currentPid = nextState.cpuId || 'IDLE';
-      const currentColor = nextState.cpuId 
-        ? nextState.processes.find(p => p.id === nextState.cpuId)?.color || '#333' 
+      const currentPid = nextState.executedId || 'IDLE';
+      const currentColor = nextState.executedId 
+        ? nextState.processes.find(p => p.id === nextState.executedId)?.color || '#333' 
         : '#1e293b';
 
       if (lastBlock && lastBlock.processId === currentPid) {
@@ -433,6 +425,14 @@ const App: React.FC = () => {
     setProcesses([...processes, newProc]);
   };
 
+  const deleteProcess = (processId: string) => {
+    setProcesses(prev => prev.filter(p => p.id !== processId));
+    setReadyQueue(prev => prev.filter(id => id !== processId));
+    if (cpuId === processId) {
+      setCpuId(null);
+    }
+  };
+
   const randomize = () => {
     handleReset();
     const count = 5;
@@ -576,7 +576,11 @@ const App: React.FC = () => {
             </div>
             
             <div className="flex-1 min-h-0">
-               <StatsTable processes={processes} onDownload={generateReport} />
+               <StatsTable 
+              processes={processes} 
+              onDeleteProcess={deleteProcess}
+              onDownload={generateReport} 
+            />
             </div>
             
             {/* Info Footer */}

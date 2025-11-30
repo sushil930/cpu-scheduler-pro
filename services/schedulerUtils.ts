@@ -74,12 +74,14 @@ export const advanceSimulationTick = (
   cpuId: string | null;
   readyQueue: string[];
   quantumClock: number;
+  executedId: string | null;
 } => {
   const currentTick = prevTick;
   let processes = prevProcesses.map(p => ({ ...p })); // Deep copy-ish
   let readyQueue = [...prevReadyQueue];
   let cpuId = prevRunningId;
   let nextQuantumClock = quantumClock;
+  let executedId: string | null = null;
 
   // 1. Identify newly arrived processes at this specific tick
   const newArrivals = processes
@@ -177,6 +179,7 @@ export const advanceSimulationTick = (
   if (cpuId) {
     const p = processes.find(proc => proc.id === cpuId);
     if (p) {
+      executedId = cpuId;
       p.remainingTime--;
       nextQuantumClock++;
 
@@ -227,6 +230,7 @@ export const advanceSimulationTick = (
     processes,
     cpuId,
     readyQueue,
-    quantumClock: nextQuantumClock
+    quantumClock: nextQuantumClock,
+    executedId
   };
 };
