@@ -118,17 +118,6 @@ Follow these steps to run the project locally on your machine.
 ### Report Generation
 > *Detailed HTML reports generated instantly.*
 ![Report Generation Screenshot](public/images/Report.jpeg)
-=======
-*([Add screenshot here](https://github.com/sushil930/cpu-scheduler-pro/blob/main/public/images/Screenshot_23-11-2025_92724_localhost.jpeg?raw=true))*
-
-### Light Mode
-> *Clean and crisp light theme for daylight productivity.*
-*([Add screenshot here](https://github.com/sushil930/cpu-scheduler-pro/blob/main/public/images/Screenshot%202025-11-23%20094710.png?raw=true)*
-
-### Report Generation
-> *Detailed HTML reports generated instantly.*
-*([Add screenshot here](https://github.com/sushil930/cpu-scheduler-pro/blob/main/public/images/Screenshot_23-11-2025_94810_.jpeg?raw=true))*
->>>>>>> 0a51ab2c8b0e45bbf11053d862878f4632342f47
 
 ---
 
